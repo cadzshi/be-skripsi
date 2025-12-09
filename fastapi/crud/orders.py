@@ -14,6 +14,7 @@ def create_order(db: Session, order: schemas.OrderCreate):
     db_order = models.Order(
         customer_name=order.customer_name,
         total_price=order.total_price,
+        status="pending",
         created_at=tn, 
         updated_at=tn  
     )

@@ -13,7 +13,6 @@ def create_order(db: Session, order: schemas.OrderCreate):
     db_order = models.Order(
         customer_name=order.customer_name,
         total_price=order.total_price,
-        status="pending", 
         created_at=tn, 
         updated_at=tn  
     )
@@ -30,8 +29,6 @@ def create_order(db: Session, order: schemas.OrderCreate):
             menu_id=item.menu_id,
             quantity=item.quantity,
             price_at_time=item.price_at_time,
-            # created_at=tn, # Opsional: Detail order juga bisa dikasih tanggal
-            # updated_at=tn
         )
         db.add(db_detail)
 

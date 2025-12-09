@@ -36,8 +36,8 @@ else:
     except Exception as e:
         print(f"WARNING: Gagal mount storage. Folder tidak ditemukan di: {path_storage_laravel}")
 
-# Mount ke route "/storage"
-app.mount("/storage", StaticFiles(directory=path_storage_laravel), name="storage")
+# # Mount ke route "/storage"
+# app.mount("/storage", StaticFiles(directory=path_storage_laravel), name="storage")
 
 # uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 # 192.168.137.1 192.168.100.175

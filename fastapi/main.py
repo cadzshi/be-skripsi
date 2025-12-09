@@ -15,7 +15,7 @@ app.include_router(orders_router.router, prefix="/orders", tags=["Orders"])
 # GANTI BAGIAN INI
 # Paste path folder public laravel Anda di sini.
 # PENTING: Di Python Windows, gunakan huruf 'r' di depan string agar backslash '\' terbaca benar.
-path_storage_laravel = r"C:\Kuliah\Skripsi\Code\MySkripsuy\admin-web\storage\app\public"
+path_storage_laravel = r"C:\Kuliah\Skripsi\Code\be-skripsi\admin-web\storage\app\public"
 
 # Mount ke route "/storage"
 app.mount("/storage", StaticFiles(directory=path_storage_laravel), name="storage")

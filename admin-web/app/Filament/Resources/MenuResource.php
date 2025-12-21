@@ -52,10 +52,10 @@ class MenuResource extends Resource
 
             FileUpload::make('image_url') // Simpan ke kolom image_url
                 ->image()
-                ->directory('menus') // Disimpan di folder storage/app/public/menus
+                ->directory('menus') 
                 ->visibility('public')
                 ->label('Foto Menu')
-                ->disk('public'),        // <--- WAJIB ADA: Simpan di disk publik
+                ->disk('public'),        
 
             Toggle::make('is_available')
                 ->label('Tersedia?')

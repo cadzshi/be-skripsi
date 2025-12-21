@@ -40,7 +40,7 @@ class OrderResource extends Resource
                     ->label('Nama Pelanggan'),
 
                 TextColumn::make('total_price')
-                    ->money('IDR') // Format Rupiah otomatis
+                    ->money('IDR') // format rupiah
                     ->label('Total'),
 
                 TextColumn::make('status')
@@ -61,19 +61,19 @@ class OrderResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(), // Tombol Edit bawaan
+                Tables\Actions\EditAction::make(), // edit
 
-                // --- TOMBOL CUSTOM: SELESAIKAN ORDER ---
+                // selesaikan order
                 Action::make('selesai')
                     ->label('Selesaikan')
-                    ->icon('heroicon-o-check-circle') // Ikon Centang
-                    ->color('success') // Warna Hijau
-                    ->requiresConfirmation() // Minta konfirmasi biar ga kepencet
+                    ->icon('heroicon-o-check-circle') 
+                    ->color('success') 
+                    ->requiresConfirmation() 
                     ->action(function (Order $record) {
-                        // Logika Update Database
+                        // update database
                         $record->update(['status' => 'completed']);
                     })
-                    // Hanya muncul jika status BELUM completed
+                    // kalau status belum "completed"
                     ->visible(fn (Order $record) => $record->status !== 'completed'),
             ])
             ->bulkActions([

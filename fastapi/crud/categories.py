@@ -1,10 +1,8 @@
 from sqlalchemy.orm import Session
 import models, schemas
 
-
 def get_categories(db: Session):
     return db.query(models.Category).all()
-
 
 def create_category(db: Session, category: schemas.CategoryCreate):
     db_category = models.Category(name=category.name)

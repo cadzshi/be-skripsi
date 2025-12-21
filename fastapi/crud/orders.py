@@ -6,12 +6,10 @@ import pytz
 
 def create_order(db: Session, order: schemas.OrderCreate):
     
-    # --- 1. AMBIL WAKTU JAKARTA (WIB) ---
+    # ambil waktu wib
     tz_jakarta = pytz.timezone('Asia/Jakarta')
     tn = datetime.now(tz_jakarta)
-    # ------------------------------------
-
-    # --- 2. MASUKKAN WAKTU KE DATABASE ---
+    
     db_order = models.Order(
         customer_name=order.customer_name,
         total_price=order.total_price,
@@ -20,12 +18,10 @@ def create_order(db: Session, order: schemas.OrderCreate):
         updated_at=tn  
     )
 
-
     db.add(db_order)
     db.commit()
     db.refresh(db_order)
 
-    # Insert details (Bagian ini biarkan sama seperti kode Anda)
     for item in order.details:
         db_detail = models.OrderDetail(
             order_id=db_order.id,

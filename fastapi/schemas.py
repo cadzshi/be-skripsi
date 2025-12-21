@@ -42,8 +42,6 @@ class Menu(MenuBase):
 class MenuResponseWrapper(BaseModel):
     MenuResponse: List[Menu]
 
-
-# ----- ini belum ----- #
 # order detail
 class OrderDetailBase(BaseModel):
     menu_id: int

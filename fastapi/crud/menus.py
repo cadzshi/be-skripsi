@@ -5,7 +5,6 @@ import models, schemas
 def get_menus(db: Session):
     return db.query(models.Menu).all()
 
-
 def create_menu(db: Session, menu: schemas.MenuCreate):
     db_menu = models.Menu(
         name=menu.name,

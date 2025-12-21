@@ -14,39 +14,39 @@ class StatsOverview extends BaseWidget
 
     protected function getStats(): array
     {
-        // 1. Hitung Total Penjualan Hari Ini
+        // Hitung Total Penjualan Hari Ini
         $todayRevenue = Order::whereDate('created_at', Carbon::today())->sum('total_price');
         
-        // 2. Hitung Total Penjualan Seluruhnya
+        // Hitung Total Penjualan Seluruhnya
         $totalRevenue = Order::sum('total_price');
 
         return [
-            // KARTU 1: Total Pesanan Masuk
+            // Total Pesanan Masuk
             Stat::make('Total Pesanan', Order::count())
                 ->description('Semua pesanan yang masuk')
                 ->descriptionIcon('heroicon-m-shopping-bag')
                 ->color('primary'),
 
-            // KARTU 2: Pesanan Pending (Butuh Tindakan)
+            // Pesanan Pending 
             Stat::make('Pesanan Pending', Order::where('status', 'pending')->count())
                 ->description('Perlu diproses')
                 ->descriptionIcon('heroicon-m-clock')
-                ->color('warning'), // Warna Kuning/Oranye
+                ->color('warning'), 
 
-            // KARTU 3: Pesanan Selesai
+            // Pesanan Selesai
             Stat::make('Pesanan Selesai', Order::where('status', 'completed')->count())
                 ->description('Sukses')
                 ->descriptionIcon('heroicon-m-check-circle')
-                ->color('success'), // Warna Hijau
+                ->color('success'), 
 
-            // KARTU 4: Penjualan Hari Ini
+            // Penjualan Hari Ini
             Stat::make('Omset Hari Ini', 'Rp ' . number_format($todayRevenue, 0, ',', '.'))
                 ->description('Pemasukan per ' . now()->format('d M Y'))
                 ->descriptionIcon('heroicon-m-currency-dollar')
                 ->color('success')
-                ->chart([7, 2, 10, 3, 15, 4, 17]), // Grafik hiasan (dummy)
+                ->chart([7, 2, 10, 3, 15, 4, 17]), 
 
-            // KARTU 5: Total Penjualan Seumur Hidup
+            // Total Penjualan Seumur Hidup
             Stat::make('Total Pemasukan', 'Rp ' . number_format($totalRevenue, 0, ',', '.'))
                 ->color('info'),
         ];
